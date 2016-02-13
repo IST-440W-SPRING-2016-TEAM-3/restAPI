@@ -33,6 +33,7 @@ router.get('/', function(req, res, next) {
                 users[u].password = "you thought you could see that...";
             }
             disconnectMongo('USERS::GET::closed connection to MongoDB');
+            res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
             res.json(users);
         } else {
             disconnectMongo('USERS::GET::closed connection to MongoDB');
