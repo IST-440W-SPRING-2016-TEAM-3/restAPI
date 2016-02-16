@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
 	uuid: {
 		type: String,
-		required: true,
+		required: true
 		index: {
 			unique: true
 		}
@@ -19,7 +19,7 @@ var UserSchema = new Schema({
 	},
 	email: {
 		type: String,
-		required: true,
+		required: true
 		index: {
 			unique: true
 		}
