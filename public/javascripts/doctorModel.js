@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var DoctorSchema = new Schema({
   uuid: {
     type: String,
-    required true
+    required: true
   },
 
   firstname: {
@@ -29,4 +29,4 @@ var DoctorSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Doctors', DoctorSchema);
+module.exports = mongoose.model('Doctor', DoctorSchema);

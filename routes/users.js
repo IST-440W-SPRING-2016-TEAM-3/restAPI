@@ -4,6 +4,8 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
     User = require('../public/javascripts/userModel'),
     connStr = 'mongodb://localhost:27017/440w';
+var bcrypt = require('bcrypt'),
+    SWF = 10;
 
 function connectMongo(logMessage){
     mongoose.connect(connStr, function(err) {
@@ -31,6 +33,7 @@ router.get('/', function(req, res, next) {
                 users[u].password = "you thought you could see that...";
             }
             disconnectMongo('USERS::GET::closed connection to MongoDB');
+            res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
             res.json(users);
         } else {
             disconnectMongo('USERS::GET::closed connection to MongoDB');
@@ -84,10 +87,23 @@ router.post('/', function(req, res, next) {
             disconnectMongo('USER::POST::closed connection to MongoDB');
             res.json({"error": "user with that email already exists"});
         } else {
-            newUser.save(function(err) {
+            // salt generation
+            bcrypt.genSalt(SWF, function(err, salt) {
                 if (err) throw err;
-                disconnectMongo('USER::Successfully closed connection to MongoDB');
-                res.end();
+
+                // hashing with our new salt
+                bcrypt.hash(newUser.password, salt, function(err, hash) {
+                    if (err) throw err;
+
+                    // change plain text to hashed/salted password
+                    newUser.password = hash;
+
+                    newUser.save(function(err) {
+                        if (err) throw err;
+                        disconnectMongo('USER::Successfully closed connection to MongoDB');
+                        res.end();
+                    });
+                });
             });
         }
     });
