@@ -5,6 +5,9 @@ var DoctorSchema = new Schema({
   uuid: {
     type: String,
     required: true
+    index: {
+      unique: true
+    }
   },
 
   firstname: {
@@ -16,13 +19,32 @@ var DoctorSchema = new Schema({
     type: String,
     required: true
   },
-
-  email: {
+  DateOfBirth: {
     type: String,
     required: true
   },
 
+  state: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+    index: {
+      unique: true
+    }
+  },
+
   password: {
+    type: String,
+    required: true
+  },
+  StreetAddress: {
     type: String,
     required: true
   }

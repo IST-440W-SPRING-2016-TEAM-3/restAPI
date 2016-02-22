@@ -2,9 +2,12 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var NurseSchema = new Schema({
-  userID: {
+  uuid: {
     type: String,
-    required true
+    required: true
+    index: {
+      unique: true
+    }
   },
   firstname: {
     type: String,
@@ -14,11 +17,30 @@ var NurseSchema = new Schema({
     type: String,
     required: true
   },
-  email: {
+  DateOfBirth: {
     type: String,
     required: true
   },
+  state: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+    index: {
+      unique: true
+    }
+  },
   password: {
+    type: String,
+    required: true
+  },
+  StreetAddress: {
     type: String,
     required: true
   }

@@ -17,6 +17,10 @@ var MedicineSchema = new Schema({
 	price: {
 		type: String,
 		required: true
+	},
+	AppointmentID: {
+		type: String,
+		required: true
 	}
 });
 

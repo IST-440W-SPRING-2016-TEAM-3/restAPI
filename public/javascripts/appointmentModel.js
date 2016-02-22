@@ -17,7 +17,11 @@ var AppointmentSchema = new Schema({
   time: {
     type: String,
     required: true
-  }
+  },
+	AppointmentID: {
+		type: String,
+		required: true
+	}
 });
 
 module.exports = mongoose.model('Appointments', AppointmentSchema);
