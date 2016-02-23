@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var NurseSchema = new Schema({
+var AdminSchema = new Schema({
   uuid: {
     type: String,
     required: true
@@ -36,14 +36,11 @@ var NurseSchema = new Schema({
       unique: true
     }
   },
-  password: {
-    type: String,
-    required: true
-  },
+
   StreetAddress: {
     type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model('Nurses', NurseSchema);
+module.exports = mongoose.model('Admins', AdminSchema);

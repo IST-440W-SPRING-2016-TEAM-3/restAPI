@@ -36,10 +36,7 @@ var UserSchema = new Schema({
 			unique: true
 		}
 	},
-	password: {
-		type: String,
-		required: true
-	},
+	
 	StreetAddress: {
 		type: String,
 		required: true
