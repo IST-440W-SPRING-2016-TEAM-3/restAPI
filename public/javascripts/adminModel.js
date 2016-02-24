@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var DoctorSchema = new Schema({
+var AdminSchema = new Schema({
   uuid: {
     type: String,
     required: true
@@ -9,12 +9,10 @@ var DoctorSchema = new Schema({
       unique: true
     }
   },
-
   firstname: {
     type: String,
     required: true
   },
-
   lastname: {
     type: String,
     required: true
@@ -23,7 +21,6 @@ var DoctorSchema = new Schema({
     type: String,
     required: true
   },
-
   state: {
     type: String,
     required: true
@@ -40,15 +37,10 @@ var DoctorSchema = new Schema({
     }
   },
 
-  password: {
-    type: String,
-    required: true
-  },
   StreetAddress: {
     type: String,
     required: true
   }
-
 });
 
-module.exports = mongoose.model('Doctor', DoctorSchema);
+module.exports = mongoose.model('Admins', AdminSchema);

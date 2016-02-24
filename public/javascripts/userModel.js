@@ -17,6 +17,18 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
+	DateOfBirth: {
+		type: String,
+		required: true
+	},
+	state: {
+		type: String,
+		required: true
+	},
+	city: {
+		type: String,
+		required: true
+	},
 	email: {
 		type: String,
 		required: true
@@ -24,7 +36,12 @@ var UserSchema = new Schema({
 			unique: true
 		}
 	},
-	password: {
+	
+	StreetAddress: {
+		type: String,
+		required: true
+	},
+	InsuranceID: {
 		type: String,
 		required: true
 	}
