@@ -14,11 +14,11 @@ var AppointmentSchema = new Schema({
 		type: String,
 		required: true
 	},
-  time: {
-    type: String,
-    required: true
-  },
-	AppointmentID: {
+	time: {
+		type: String,
+		required: true
+	},
+	doctor: {
 		type: String,
 		required: true
 	}

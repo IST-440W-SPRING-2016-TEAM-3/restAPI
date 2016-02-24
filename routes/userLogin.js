@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    User = require('../public/javascripts/userModel'),
+    User = require('../public/javascripts/userLoginModel'),
     connStr = 'mongodb://localhost:27017/440w';
 var bcrypt = require('bcrypt'),
     SWF = 10;
@@ -72,8 +72,6 @@ router.post('/', function(req, res, next) {
 
     var newUser = new User({
         uuid: newUUID,
-        firstname: userData.firstname,
-        lastname: userData.lastname,
         email: userData.email,
         password: userData.password
     });

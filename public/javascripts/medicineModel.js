@@ -1,19 +1,19 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var DiagnosisSchema = new Schema({
+var MedicineSchema = new Schema({
 	uuid: {
 		type: String,
 		required: true
 	},
-	AppointmentID: {
+	name: {
 		type: String,
 		required: true
 	},
-	symptoms: {
+	description: {
 		type: String,
 		required: true
 	}
 });
 
-module.exports = mongoose.model('Diagnosis', DiagnosisSchema);
+module.exports = mongoose.model('Medicine', MedicineSchema);
