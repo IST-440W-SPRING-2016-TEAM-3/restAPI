@@ -15,7 +15,7 @@ var TestResultSchema = new Schema({
 		required: true
 	},
 	result: {
-    	type:String
+		type: String
 	},
 	date: {
 		type: String,

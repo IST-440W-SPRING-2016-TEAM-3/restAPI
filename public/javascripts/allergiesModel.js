@@ -1,19 +1,19 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+	Schema = mongoose.Schema;
 
 var AllergySchema = new Schema({
-    uuid: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    }
+	uuid: {
+		type: String,
+		required: true
+	},
+	description: {
+		type: String,
+		required: true
+	},
+	name: {
+		type: String,
+		required: true
+	}
 });
 
 module.exports = mongoose.model('Allergy', AllergiesSchema);

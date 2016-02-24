@@ -1,23 +1,19 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var InvoiceSchema = new Schema({
+var DiagnosisSchema = new Schema({
 	uuid: {
 		type: String,
 		required: true
 	},
-	description: {
+	AppointmentID: {
 		type: String,
 		required: true
 	},
-	cost: {
-		type: String,
-		required: true
-	},
-	date: {
+	symptoms: {
 		type: String,
 		required: true
 	}
 });
 
-module.exports = mongoose.model('Invoice', InvoiceSchema);
+module.exports = mongoose.model('Diagnosis', DiagnosisSchema);
