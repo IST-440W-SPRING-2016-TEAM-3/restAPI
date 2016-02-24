@@ -13,10 +13,6 @@ var MedicineSchema = new Schema({
 	description: {
 		type: String,
 		required: true
-	},
-	price: {
-		type: String,
-		required: true
 	}
 });
 

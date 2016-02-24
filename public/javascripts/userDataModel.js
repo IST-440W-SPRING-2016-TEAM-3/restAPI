@@ -18,19 +18,63 @@ var UserDataSchema = new Schema({
 		type: String,
 		required: true
 	},
-	streetaddress: {
-		type: String,
-		required: true
-	},
-	zip: {
-		type: String,
-		required: true
-	},
-	country: {
-		type: String,
-		required: true
-	},
+	address:[
+		{
+			streetaddress: {
+				type: String,
+				required: true
+			},
+			city: {
+				type: String,
+				required: true
+			},
+			state: {
+				type: String,
+				required: true
+			},
+			zip: {
+				type: String,
+				required: true
+			},
+			country: {
+				type: String,
+				required: true
+			}
+		}
+	],
 	phone: {
+		type: String,
+		required: true
+	},
+	dob: {
+		type: String,
+		required: true
+	},
+	useroverview: [
+		{
+			gender: {
+				type: String,
+				required: true
+			},
+			height: {
+				type: String,
+				required: true
+			},
+			weight: {
+				type: String,
+				required: true
+			}
+		}
+	],
+	primaryinsurance:{
+		type: String,
+		required: true
+	},
+	primarypharmacy:{
+		type: String,
+		required: true
+	},
+	comment: {
 		type: String,
 		required: true
 	}

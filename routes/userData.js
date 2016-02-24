@@ -63,20 +63,36 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     var userData = {};
-
-    userData = req.body;
+        userData = req.body;
 
     connectMongo('USERDATA::POST::Successfully connected to MongoDB');
 
-    var UserData = new UserDataModel({
+    var NewUserData = new UserDataModel({
         uuid: userData.uuid,
-        firstname: userData.firstname,
-        lastname: userData.lastname,
-        email: userData.email,
-        streetaddress: userData.streetaddress,
-        zip: userData.zip,
-        country: userData.country,
-        phone: userData.phone
+    	firstname: userData.firstname,
+    	lastname: userData.lastname,
+    	email: userData.email,
+    	address:[
+    		{
+    			streetaddress: userData.address[0].streetaddress,
+    			city: userData.address[0].city,
+    			state: userData.address[0].state,
+    			zip: userData.address[0].zip,
+    			country: userData.address[0].country,
+    		}
+    	],
+    	phone: userData.phone,
+    	dob: userData.dob,
+    	useroverview: [
+    		{
+    			gender: userData.useroverview[0].gender,
+    			height: userData.useroverview[0].height,
+    			weight: userData.useroverview[0].weight
+    		}
+    	],
+    	primaryinsurance: userData.primaryinsurance,
+    	primarypharmacy: userData.primarypharmacy,
+    	comment:  userData.comment
     });
 
     var exists = UserDataModel.findOne({ email: userData.email });
@@ -85,10 +101,11 @@ router.post('/', function(req, res, next) {
         if(err){
             throw err;
         } else if(user) {
+            console.log(user);
             disconnectMongo('USERDATA::POST::closed connection to MongoDB');
             res.json({"error": "user with that email already exists"});
         } else {
-            UserData.save(function(err) {
+            NewUserData.save(function(err) {
                 if (err) throw err;
                 disconnectMongo('USERDATA::Successfully closed connection to MongoDB');
                 res.end();

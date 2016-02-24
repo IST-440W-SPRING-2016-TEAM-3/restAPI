@@ -1,25 +1,17 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+var UserLoginSchema = new Schema({
 	uuid: {
 		type: String,
-		required: true
+		required: true,
 		index: {
 			unique: true
 		}
 	},
-	firstname: {
-		type: String,
-		required: true
-	},
-	lastname: {
-		type: String,
-		required: true
-	},
 	email: {
 		type: String,
-		required: true
+		required: true,
 		index: {
 			unique: true
 		}
@@ -30,4 +22,4 @@ var UserSchema = new Schema({
 	}
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('UserLogin', UserLoginSchema);

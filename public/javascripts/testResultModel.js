@@ -6,23 +6,21 @@ var TestResultSchema = new Schema({
 		type: String,
 		required: true
 	},
+	testtype: {
+		type: String,
+		required: true
+	},
 	testdescription: {
 		type: String,
 		required: true
 	},
-  result: {
-    type:String,
-    required: true
-  },
+	result: {
+    	type:String
+	},
 	date: {
 		type: String,
 		required: true
-	},
-  time: {
-    type: String,
-    required: true
-  }
-
+	}
 });
 
 module.exports = mongoose.model('TestResults', TestResultSchema);
