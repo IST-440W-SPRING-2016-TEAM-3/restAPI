@@ -38,8 +38,6 @@ function disconnectMongo(logMessage){
 
 router.get('/:id', function(req, res, next) {
 
-    connectMongo('APPOINTMENT::GET::Successfully connected to MongoDB');
-
     var exists = Appointment.find({uuid : req.params.id});
 
     exists.exec(function(err, appointment){
@@ -47,10 +45,8 @@ router.get('/:id', function(req, res, next) {
             throw err;
         } else if(appointment) {
             res.json(appointment);
-            disconnectMongo('APPOINTMENT::GET::closed connection to MongoDB');
         } else {
             res.json({"error": "no appointments found with that ID"});
-            disconnectMongo('APPOINTMENT::GET::closed connection to MongoDB');
         }
     });
 });
@@ -59,8 +55,6 @@ router.post('/', function(req, res, next) {
     var appointmentData = {};
 
     appointmentData = req.body;
-
-    connectMongo('APPOINTMENT::POST::Successfully connected to MongoDB');
 
     var newAppointment = new Appointment({
         uuid: appointmentData.uuid,
@@ -76,12 +70,10 @@ router.post('/', function(req, res, next) {
         if(err){
             throw err;
         } else if(appointment) {
-            disconnectMongo('APPOINTMENT::POST::closed connection to MongoDB');
             res.json({"error": "appointment already exists on that date"});
         } else {
             newAppointment.save(function(err) {
                 if (err) throw err;
-                disconnectMongo('APPOINTMENT::Successfully closed connection to MongoDB');
                 res.end();
             });
         }
