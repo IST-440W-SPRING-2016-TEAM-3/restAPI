@@ -10,8 +10,27 @@ var userLogin = require('./routes/userLogin');
 var userData = require('./routes/userData');
 var userMedicines = require('./routes/userMedicine');
 var userAppointments = require('./routes/userAppointments');
+var userInvoices = require('./routes/userInvoices');
 
 var app = express();
+
+var mongoose = require('mongoose'),
+    connStr = 'mongodb://localhost:27017/440w';
+
+function connectMongo(logMessage){
+    mongoose.connect(connStr, function(err) {
+        if (err) throw err;
+        console.log(logMessage);
+    });
+}
+
+function disconnectMongo(logMessage){
+    if(mongoose.connection.close()){
+        console.log(logMessage);
+    }
+}
+
+connectMongo('APPJS::Successfully connected to MongoDB');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +49,7 @@ app.use('/userlogin', userLogin);
 app.use('/userdata', userData);
 app.use('/usermedicines', userMedicines);
 app.use('/userappointments', userAppointments);
+app.use('/userinvoices', userInvoices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

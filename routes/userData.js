@@ -44,18 +44,14 @@ function disconnectMongo(logMessage){
 
 router.get('/:id', function(req, res, next) {
 
-    connectMongo('USERDATA::GET::Successfully connected to MongoDB');
-
     var exists = UserDataModel.findOne({uuid : req.params.id});
 
     exists.exec(function(err, users){
         if(err){
             throw err;
         } else if(users) {
-            disconnectMongo('USER::GET::closed connection to MongoDB');
             res.json(users);
         } else {
-            disconnectMongo('USER::GET::closed connection to MongoDB');
             res.json({"error": "no user found with that ID"});
         }
     });
@@ -64,8 +60,6 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var userData = {};
         userData = req.body;
-
-    connectMongo('USERDATA::POST::Successfully connected to MongoDB');
 
     var NewUserData = new UserDataModel({
         uuid: userData.uuid,
@@ -101,13 +95,10 @@ router.post('/', function(req, res, next) {
         if(err){
             throw err;
         } else if(user) {
-            console.log(user);
-            disconnectMongo('USERDATA::POST::closed connection to MongoDB');
             res.json({"error": "user with that email already exists"});
         } else {
             NewUserData.save(function(err) {
                 if (err) throw err;
-                disconnectMongo('USERDATA::Successfully closed connection to MongoDB');
                 res.end();
             });
         }
