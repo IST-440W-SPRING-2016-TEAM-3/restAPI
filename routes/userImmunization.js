@@ -2,23 +2,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Immunization = require('../public/javascripts/immunizationModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
-
+    Immunization = require('../public/javascripts/immunizationModel');
 
 router.get('/:id', function(req, res, next) {
 
@@ -42,8 +26,8 @@ router.post('/', function(req, res, next) {
 
     var newImmunization = new Immunization({
         uuid: immunizationData.uuid,
-        description: immunizationData.description
-        name: immunizationData.name;
+        description: immunizationData.description,
+        name: immunizationData.name
     });
 
     var exists = Immunization.findOne({ uuid: immunizationData.uuid, name: immunizationData.name });
@@ -61,7 +45,5 @@ router.post('/', function(req, res, next) {
         }
     });
 });
-
-
 
 module.exports = router;

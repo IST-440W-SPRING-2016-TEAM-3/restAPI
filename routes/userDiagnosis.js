@@ -2,23 +2,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Diagnosis = require('../public/javascripts/diagnosisModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
-
+    Diagnosis = require('../public/javascripts/diagnosisModel');
 
 router.get('/:id', function(req, res, next) {
 
@@ -42,11 +26,11 @@ router.post('/', function(req, res, next) {
 
     var newDiagnosis = new Diagnosis({
         uuid: diagnosisData.uuid,
-        AppointmentID: diagnosisData.AppointmentID
-        symptoms: diagnosisData.symptoms;
+        AppointmentID: diagnosisData.AppointmentID,
+        symptoms: diagnosisData.symptoms
     });
 
-    var exists = Immunization.findOne({ uuid: diagnosisData.uuid, AppointmentID: diagnosisData.AppointmentID });
+    var exists = Diagnosis.findOne({ uuid: diagnosisData.uuid, AppointmentID: diagnosisData.AppointmentID });
 
     exists.exec(function(err, diagnosis){
         if(err){
@@ -61,7 +45,5 @@ router.post('/', function(req, res, next) {
         }
     });
 });
-
-
 
 module.exports = router;
