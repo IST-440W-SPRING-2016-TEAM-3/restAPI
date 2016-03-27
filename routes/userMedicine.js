@@ -41,10 +41,9 @@ router.post('/', function(req, res, next) {
     medicineData = req.body;
 
     var newMedicine = new Medicine({
-        uuid: newUUID,
+        uuid: medicineData.uuid,
         name: medicineData.name,
-        description: medicineData.description,
-        price: medicineData.price
+        description: medicineData.description
     });
 
     var exists = Medicine.findOne({ name: medicineData.name });

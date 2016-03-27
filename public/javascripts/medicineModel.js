@@ -13,6 +13,16 @@ var MedicineSchema = new Schema({
 	description: {
 		type: String,
 		required: true
+	},
+	date: {
+		dateprescribed: {
+			type: String,
+			required: true
+		}
+	},
+	status: {
+		type: String,
+		required: true
 	}
 });
 
