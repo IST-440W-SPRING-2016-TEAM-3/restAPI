@@ -26,8 +26,12 @@ router.post('/', function(req, res, next) {
 
     var newDiagnosis = new Diagnosis({
         uuid: diagnosisData.uuid,
-        AppointmentID: diagnosisData.AppointmentID,
-        symptoms: diagnosisData.symptoms
+        symptoms: diagnosisData.symptoms,
+        date:[
+          {
+            dateDiagnosed: diagnosisData.date[0].dateDiagnosed,
+          }
+        ]
     });
 
     var exists = Diagnosis.findOne({ uuid: diagnosisData.uuid, AppointmentID: diagnosisData.AppointmentID });

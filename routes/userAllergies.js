@@ -27,7 +27,14 @@ router.post('/', function(req, res, next) {
     var newAllergy = new Allergy({
         uuid: allergiesData.uuid,
         description: allergiesData.description,
-        name: allergiesData.name
+        date:[
+          {
+            startDate: allergiesData.date[0].startDate,
+            endDate: allergiesData.date[0].endDate,
+          }
+        ],
+        name: allergiesData.name,
+
     });
 
     var exists = Allergy.findOne({ uuid: allergiesData.uuid, name: allergiesData.name });

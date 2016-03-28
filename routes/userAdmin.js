@@ -12,7 +12,7 @@ router.get('/:id', function(req, res, next) {
         if(err){
             throw err;
         } else if(admin) {
-            res.json(allergy);
+            res.json(admin);
         } else {
             res.json({"error": "no admin found with that ID"});
         }
