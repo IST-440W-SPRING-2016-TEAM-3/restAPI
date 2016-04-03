@@ -13,6 +13,8 @@ var userAppointments = require('./routes/userAppointments');
 var userInvoices = require('./routes/userInvoices');
 var userImmunization = require('./routes/userImmunization');
 var userDiagnosis = require('./routes/userDiagnosis');
+var userAllergies = require('./routes/userAllergies');
+var userAdmin = require('./routes/userAdmin');
 
 var app = express();
 
@@ -54,6 +56,8 @@ app.use('/userappointments', userAppointments);
 app.use('/userinvoices', userInvoices);
 app.use('/userimmunization', userImmunization);
 app.use('/userdiagnosis', userDiagnosis);
+app.use('/userallergies', userAllergies);
+app.use('/useradmin', userAdmin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
