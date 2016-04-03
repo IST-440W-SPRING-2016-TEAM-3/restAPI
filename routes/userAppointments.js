@@ -58,10 +58,11 @@ router.post('/', function(req, res, next) {
 
     var newAppointment = new Appointment({
         uuid: appointmentData.uuid,
+        description: appointmentData.description,
         date: appointmentData.date,
         time: appointmentData.time,
-        doctor: appointmentData.doctor,
-        description: appointmentData.description
+        doctor: appointmentData.doctor
+
     });
 
     var exists = Appointment.findOne({ uuid: appointmentData.uuid, date: appointmentData.date });

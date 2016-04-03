@@ -28,6 +28,11 @@ router.post('/', function(req, res, next) {
         uuid: immunizationData.uuid,
         description: immunizationData.description,
         name: immunizationData.name
+        date:[
+          {
+            dateimmunized: immunizationData.date[0].dateimmunized,
+          }
+        ],
     });
 
     var exists = Immunization.findOne({ uuid: immunizationData.uuid, name: immunizationData.name });

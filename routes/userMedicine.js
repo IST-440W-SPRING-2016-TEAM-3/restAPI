@@ -43,7 +43,13 @@ router.post('/', function(req, res, next) {
     var newMedicine = new Medicine({
         uuid: medicineData.uuid,
         name: medicineData.name,
-        description: medicineData.description
+        description: medicineData.description,
+        date:[
+          {
+            dateprescribed: medicineData.address[0].dateprescribed,
+          }
+        ],
+        status: medicineData.status
     });
 
     var exists = Medicine.findOne({ name: medicineData.name });
