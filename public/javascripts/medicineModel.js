@@ -14,12 +14,10 @@ var MedicineSchema = new Schema({
 		type: String,
 		required: true
 	},
-	date: {
-		dateprescribed: {
+	dateprescribed: {
 			type: String,
 			required: true
-		}
-	},
+		},
 	status: {
 		type: String,
 		required: true

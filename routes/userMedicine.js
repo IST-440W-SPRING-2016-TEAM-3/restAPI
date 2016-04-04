@@ -35,18 +35,24 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var medicineData = {},
-        newUUID = uuid.v1();
+    var medicineData = {};
+
+
 
     medicineData = req.body;
+    console.log(medicineData);
 
     var newMedicine = new Medicine({
         uuid: medicineData.uuid,
         name: medicineData.name,
-        description: medicineData.description
+        description: medicineData.description,
+        status: medicineData.status,
+        dateprescribed: medicineData.dateprescribed
     });
 
-    var exists = Medicine.findOne({ name: medicineData.name });
+    console.log(newMedicine);
+
+    var exists = Medicine.findOne({uuid:medicineData.uuid, name: medicineData.name});
 
     exists.exec(function(err, medicine){
         if(err){

@@ -14,12 +14,10 @@ var ImmunizationSchema = new Schema({
 		type: String,
 		required: true
 	},
-	date: {
-		dateimmunized: {
+	dateimmunized: {
 			type: String,
 			required: true
-		}
-	}
+}
 });
 
 module.exports = mongoose.model('Immunization', ImmunizationSchema);

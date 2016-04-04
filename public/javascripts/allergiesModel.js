@@ -10,16 +10,15 @@ var AllergySchema = new Schema({
 		type: String,
 		required: true
 	},
-	date: {
-		startDate: {
+	startDate: {
 			type: String,
 			required: true
 		},
-		endDate: {
+	endDate: {
 			type: String,
 			required: true
 		},
-	},
+		
 	name: {
 		type: String,
 		required: true

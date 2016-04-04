@@ -6,16 +6,15 @@ var DiagnosisSchema = new Schema({
 		type: String,
 		required: true
 	},
-	
+
 	symptoms: {
 		type: String,
 		required: true
 	},
-	date: {
-		dateDiagnosed: {
+	dateDiagnosed: {
 			type: String,
 			required: true
-		}
+			
 	}
 });
 
