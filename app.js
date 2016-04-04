@@ -13,15 +13,11 @@ var userAppointments = require('./routes/userAppointments');
 var userInvoices = require('./routes/userInvoices');
 var userImmunization = require('./routes/userImmunization');
 var userDiagnosis = require('./routes/userDiagnosis');
-<<<<<<< HEAD
 var userTestResult = require('./routes/userTestResult');
 var doctor = require('./routes/doctor');
 var nurse = require('./routes/nurse');
-
-=======
 var userAllergies = require('./routes/userAllergies');
 var userAdmin = require('./routes/userAdmin');
->>>>>>> 6289cb23ba1f148597354073c6822ae0b24bfe26
 
 var app = express();
 
@@ -63,14 +59,12 @@ app.use('/userappointments', userAppointments);
 app.use('/userinvoices', userInvoices);
 app.use('/userimmunization', userImmunization);
 app.use('/userdiagnosis', userDiagnosis);
-<<<<<<< HEAD
-app.use('/usertestresult', usertestresult);
+app.use('/usertestresult', userTestResult);
 app.use('/doctor', doctor);
 app.use('/nurse', nurse);
-=======
 app.use('/userallergies', userAllergies);
 app.use('/useradmin', userAdmin);
->>>>>>> 6289cb23ba1f148597354073c6822ae0b24bfe26
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

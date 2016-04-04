@@ -15,10 +15,8 @@ var ImmunizationSchema = new Schema({
 		required: true
 	},
 	date: {
-		dateimmunized: {
 			type: String,
-			required: true
-		}
+			required: true		
 	}
 });
 

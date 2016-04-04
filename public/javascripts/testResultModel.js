@@ -14,6 +14,7 @@ var TestResultSchema = new Schema({
 		type: String,
 		required: true
 	},
+
 	result: {
 		type: String
 	},

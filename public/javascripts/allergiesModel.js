@@ -26,4 +26,4 @@ var AllergySchema = new Schema({
 	}
 });
 
-module.exports = mongoose.model('Allergy', AllergiesSchema);
+module.exports = mongoose.model('Allergy', AllergySchema);
