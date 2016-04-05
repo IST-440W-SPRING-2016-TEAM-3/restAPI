@@ -2,10 +2,8 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    nurseModel = require('../public/javascripts/nurseModel'),
-    connStr = 'mongodb://localhost:27017/440w';
-var bcrypt = require('bcrypt'),
-    SWF = 10;
+    Nurse = require('../public/javascripts/nurseModel'),
+    connStr = 'mongodb://127.0.0.1:27017/440w';
 
 function connectMongo(logMessage){
     mongoose.connect(connStr, function(err) {
@@ -20,81 +18,64 @@ function disconnectMongo(logMessage){
     }
 }
 
-// router.get('/', function(req, res, next) {
-//     connectMongo('USERS::GET::Successfully connected to MongoDB');
-//
-//     var exists = User.find({});
-//
-//     exists.exec(function(err, users){
-//         if(err){
-//             throw err;
-//         } else if(users && (users.length !== 0)) {
-//             for(var u = 0; u < users.length; u++){
-//                 users[u].password = "you thought you could see that...";
-//             }
-//             disconnectMongo('USERS::GET::closed connection to MongoDB');
-//             res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
-//             res.json(users);
-//         } else {
-//             disconnectMongo('USERS::GET::closed connection to MongoDB');
-//             res.json({"error": "no users"});
-//         }
-//     });
-// });
+router.get('/', function(req, res, next) {
 
-router.get('/:id', function(req, res, next) {
+    var exists = Nurse.find({});
 
-    var exists = nurseModel.findOne({uuid : req.params.id});
-
-    exists.exec(function(err, nurse){
+    exists.exec(function(err, nurses){
         if(err){
             throw err;
-        } else if(nurse) {
-            res.json(nurse);
+        } else if(nurses) {
+            res.json(nurses);
         } else {
-            res.json({"error": "no nurse found with that ID"});
+            res.json({"error": "no nurses listed"});
         }
     });
 });
 
+router.get('/:id', function(req, res, next) {
+    var exists = Nurse.findOne({uuid : req.params.id});
+
+    exists.exec(function(err, nurses){
+        if(err){
+            throw err;
+        } else if(nurses) {
+            res.json(nurses);
+        } else {
+            res.json({"error": "no listed nurse matched that ID"});
+        }
+    });
+});
+
+
+
 router.post('/', function(req, res, next) {
+
     var nurseData = {};
         nurseData = req.body;
 
-    var NewNurseData = new nurseModel({
+    var newNurse = new Nurse({
         uuid: nurseData.uuid,
-    	firstname: nurseData.firstname,
-    	lastname: nurseData.lastname,
-    	email: nurseData.email,
-    	password: nurseData.password
+        firstname: nurseData.firstname,
+        lastname: nurseData.lastname,
+        email: nurseData.email,
+        password: nurseData.password
     });
 
-    var exists = nurseModel.findOne({ email: nurseData.email });
+    var exists = Nurse.findOne({ uuid: nurseData.uuid, email: nurseData.email });
 
-    exists.exec(function(err, nurse){
+    exists.exec(function(err, nurses){
         if(err){
             throw err;
-        } else if(nurse) {
-            res.json({"error": "nurse with that email already exists"});
+        } else if(nurses) {
+            res.json({"error": "a nurse with that email is already associated with that id"});
         } else {
-            NewNurseData.save(function(err) {
+            newNurse.save(function(err) {
                 if (err) throw err;
                 res.end();
             });
         }
     });
 });
-
-// router.put('/:id', function(req, res, next) {
-//     var updatedUser = req.body;
-//
-//     connectMongo('USER::PUT::Successfully connected to MongoDB');
-//
-//     User.findOneAndUpdate({uuid: req.params.id}, {$set:{email: updatedUser.email, password:updatedUser.password}}, {new: true}, function(err, doc){
-//         if (err) throw err;
-//         disconnectMongo('USER::PUT::closed connection to MongoDB');
-//         res.end();
-//     });
-// });
 
 module.exports = router;

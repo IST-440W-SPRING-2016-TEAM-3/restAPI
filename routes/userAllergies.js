@@ -2,48 +2,71 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Allergies = require('../public/javascripts/allergiesModel');
+    Allergy = require('../public/javascripts/allergiesModel'),
+    connStr = 'mongodb://127.0.0.1:27017/440w';
 
-router.get('/:id', function(req, res, next) {
 
-    var exists = Allergy.find({uuid : req.params.id});
+function connectMongo(logMessage){
+    mongoose.connect(connStr, function(err) {
+        if (err) throw err;
+        console.log(logMessage);
+    });
+}
 
-    exists.exec(function(err, allergy){
+function disconnectMongo(logMessage){
+    if(mongoose.connection.close()){
+        console.log(logMessage);
+    }
+}
+
+router.get('/', function(req, res, next) {
+
+    var exists = Allergy.find({});
+
+    exists.exec(function(err, allergies){
         if(err){
             throw err;
-        } else if(allergy) {
-            res.json(allergy);
+        } else if(allergies) {
+            res.json(allergies);
         } else {
-            res.json({"error": "no allergies found with that ID"});
+            res.json({"error": "no known allergies available"});
         }
     });
 });
 
-router.post('/', function(req, res, next) {
-    var allergiesData = {};
+router.get('/:id', function(req, res, next) {
+    var exists = Allergy.findOne({uuid : req.params.id});
 
-    allergiesData = req.body;
-
-    var newAllergy = new Allergy({
-        uuid: allergiesData.uuid,
-        description: allergiesData.description,
-        date:[
-          {
-            startDate: allergiesData.date[0].startDate,
-            endDate: allergiesData.date[0].endDate,
-          }
-        ],
-        name: allergiesData.name,
-
-    });
-
-    var exists = Allergy.findOne({ uuid: allergiesData.uuid, name: allergiesData.name });
-
-    exists.exec(function(err, allergy){
+    exists.exec(function(err, allergies){
         if(err){
             throw err;
-        } else if(allergy) {
-            res.json({"error": "allergy already exists with that name"});
+        } else if(allergies) {
+            res.json(allergies);
+        } else {
+            res.json({"error": "no Allergy found with that ID"});
+        }
+    });
+});
+
+
+router.post('/', function(req, res, next) {
+
+    var allergyData = {};
+        allergyData = req.body;
+
+    var newAllergy = new Allergy({
+        uuid: allergyData.uuid,
+        description: allergyData.description,
+        name: allergyData.name
+    });
+
+    var exists = Allergy.findOne({ uuid: allergyData.uuid, name: allergyData.name });
+
+    exists.exec(function(err, allergies){
+        if(err){
+            throw err;
+        } else if(allergies) {
+            res.json({"error": "an allergy with that name is already recorded"});
         } else {
             newAllergy.save(function(err) {
                 if (err) throw err;
