@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Medicine = require('../public/javascripts/medicineModel'),
-    connStr = 'mongodb://localhost:27017/440w';
+    Medicine = require('../public/javascripts/medicineModel');
 
 router.get('/', function(req, res, next) {
 
@@ -35,23 +34,19 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-
     var medicineData = {};
-
-    medicineData = req.body;
-    console.log(medicineData);
+        medicineData = req.body;
 
     var newMedicine = new Medicine({
         uuid: medicineData.uuid,
         name: medicineData.name,
         description: medicineData.description,
-        status: medicineData.status,
-        dateprescribed: medicineData.dateprescribed
+        dateprescribed: medicineData.dateprescribed,
+        status: medicineData.status
     });
 
     console.log(newMedicine);
-
-    var exists = Medicine.findOne({uuid:medicineData.uuid, name: medicineData.name});
+    var exists = Medicine.findOne({uuid: medicineData.uuid, name: medicineData.name });
 
     exists.exec(function(err, medicine){
         if(err){

@@ -2,23 +2,9 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    UserDataModel = require('../public/javascripts/userDataModel'),
-    connStr = 'mongodb://localhost:27017/440w';
+    UserDataModel = require('../public/javascripts/userDataModel');
 var bcrypt = require('bcrypt'),
     SWF = 10;
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
 
 // router.get('/', function(req, res, next) {
 //     connectMongo('USERS::GET::Successfully connected to MongoDB');
@@ -66,24 +52,16 @@ router.post('/', function(req, res, next) {
     	firstname: userData.firstname,
     	lastname: userData.lastname,
     	email: userData.email,
-    	address:[
-    		{
-    			streetaddress: userData.address[0].streetaddress,
-    			city: userData.address[0].city,
-    			state: userData.address[0].state,
-    			zip: userData.address[0].zip,
-    			country: userData.address[0].country,
-    		}
-    	],
+		streetaddress: userData.streetaddress,
+		city: userData.city,
+		state: userData.state,
+		zip: userData.zip,
+		country: userData.country,
     	phone: userData.phone,
     	dob: userData.dob,
-    	useroverview: [
-    		{
-    			gender: userData.useroverview[0].gender,
-    			height: userData.useroverview[0].height,
-    			weight: userData.useroverview[0].weight
-    		}
-    	],
+		gender: userData.gender,
+		height: userData.height,
+		weight: userData.weight,
     	primaryinsurance: userData.primaryinsurance,
     	primarypharmacy: userData.primarypharmacy,
     	comment:  userData.comment
