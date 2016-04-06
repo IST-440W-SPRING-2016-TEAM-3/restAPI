@@ -14,7 +14,7 @@ var MedicineSchema = new Schema({
 		type: String,
 		required: true
 	},
-	dateprescibed: {
+	dateprescribed: {
 		type: String,
 		required: true
 	},

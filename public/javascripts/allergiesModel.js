@@ -10,10 +10,11 @@ var AllergySchema = new Schema({
 		type: String,
 		required: true
 	},
+	
 	name: {
 		type: String,
 		required: true
 	}
 });
 
-module.exports = mongoose.model('Allergy', AllergiesSchema);
+module.exports = mongoose.model('Allergy', AllergySchema);
