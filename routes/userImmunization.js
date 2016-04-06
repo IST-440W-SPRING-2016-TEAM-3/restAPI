@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
         uuid: immunizationData.uuid,
         description: immunizationData.description,
         name: immunizationData.name,
-        date: immunizationData.date
+        dateimmunized: immunizationData.dateimmunized
     });
 
     var exists = Immunization.findOne({ uuid: immunizationData.uuid, name: immunizationData.name });
