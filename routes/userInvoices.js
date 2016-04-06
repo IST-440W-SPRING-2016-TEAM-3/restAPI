@@ -1,21 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose'),
-    InvoiceModel = require('../public/javascripts/invoiceModel'),
-    connStr = 'mongodb://localhost:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
+    InvoiceModel = require('../public/javascripts/invoiceModel');
 
 router.get('/:id', function(req, res, next) {
 

@@ -2,23 +2,9 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    UserDataModel = require('../public/javascripts/userDataModel'),
-    connStr = 'mongodb://localhost:27017/440w';
+    UserDataModel = require('../public/javascripts/userDataModel');
 var bcrypt = require('bcrypt'),
     SWF = 10;
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
 
 // router.get('/', function(req, res, next) {
 //     connectMongo('USERS::GET::Successfully connected to MongoDB');

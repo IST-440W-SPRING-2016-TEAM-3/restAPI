@@ -2,22 +2,8 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Appointment = require('../public/javascripts/appointmentModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
+    Appointment = require('../public/javascripts/appointmentModel');
+    
 // router.get('/', function(req, res, next) {
 //     connectMongo('MEDICINES::GET::Successfully connected to MongoDB');
 //
