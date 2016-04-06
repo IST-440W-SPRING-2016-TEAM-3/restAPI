@@ -41,8 +41,10 @@ router.post('/', function(req, res, next) {
         uuid: medicineData.uuid,
         name: medicineData.name,
         description: medicineData.description,
-        dateprescribed: medicineData.dateprescribed,
-        status: medicineData.status
+        datestart: medicineData.datestart,
+        dateend: medicineData.dateend,
+        dosage: medicineData.dosage,
+        frequency: medicineData.frequency
     });
 
     console.log(newMedicine);
