@@ -2,22 +2,8 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Doctor = require('../public/javascripts/doctorModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
+    Doctor = require('../public/javascripts/doctorModel');
+    
 router.get('/', function(req, res, next) {
 
     var exists = Doctor.find({});

@@ -5,29 +5,7 @@ var mongoose = require('mongoose'),
     UserDataModel = require('../public/javascripts/userDataModel');
 var bcrypt = require('bcrypt'),
     SWF = 10;
-
-// router.get('/', function(req, res, next) {
-//     connectMongo('USERS::GET::Successfully connected to MongoDB');
-//
-//     var exists = User.find({});
-//
-//     exists.exec(function(err, users){
-//         if(err){
-//             throw err;
-//         } else if(users && (users.length !== 0)) {
-//             for(var u = 0; u < users.length; u++){
-//                 users[u].password = "you thought you could see that...";
-//             }
-//             disconnectMongo('USERS::GET::closed connection to MongoDB');
-//             res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
-//             res.json(users);
-//         } else {
-//             disconnectMongo('USERS::GET::closed connection to MongoDB');
-//             res.json({"error": "no users"});
-//         }
-//     });
-// });
-
+    
 router.get('/:id', function(req, res, next) {
 
     var exists = UserDataModel.findOne({uuid : req.params.id});
