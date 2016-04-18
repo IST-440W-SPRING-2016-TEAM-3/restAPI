@@ -5,7 +5,22 @@ var mongoose = require('mongoose'),
     UserDataModel = require('../public/javascripts/userDataModel');
 var bcrypt = require('bcrypt'),
     SWF = 10;
-    
+
+router.get('/', function(req, res, next) {
+
+    var exists = UserDataModel.find({});
+
+    exists.exec(function(err, users){
+        if(err){
+            throw err;
+        } else if(users) {
+            res.json(users);
+        } else {
+            res.json({"error": "no users found"});
+        }
+    });
+});
+
 router.get('/:id', function(req, res, next) {
 
     var exists = UserDataModel.findOne({uuid : req.params.id});

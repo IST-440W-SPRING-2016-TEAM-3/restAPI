@@ -20,7 +20,7 @@ var mongoose = require('mongoose'),
     });
 
     router.get('/:id', function(req, res, next) {
-        var exists = Immunization.findOne({uuid : req.params.id});
+        var exists = Immunization.find({uuid : req.params.id});
 
         exists.exec(function(err, immunizations){
             if(err){

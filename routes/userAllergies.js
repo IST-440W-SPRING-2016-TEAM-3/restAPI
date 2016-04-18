@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    var exists = Allergy.findOne({uuid : req.params.id});
+    var exists = Allergy.find({uuid : req.params.id});
 
     exists.exec(function(err, allergies){
         if(err){
