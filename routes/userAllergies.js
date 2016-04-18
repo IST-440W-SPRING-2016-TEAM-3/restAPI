@@ -2,23 +2,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Allergy = require('../public/javascripts/allergiesModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
+    Allergy = require('../public/javascripts/allergiesModel');
 router.get('/', function(req, res, next) {
 
     var exists = Allergy.find({});
@@ -35,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    var exists = Allergy.findOne({uuid : req.params.id});
+    var exists = Allergy.find({uuid : req.params.id});
 
     exists.exec(function(err, allergies){
         if(err){

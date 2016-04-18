@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-	var exists = Appointment.findOne({
+	var exists = Appointment.find({
 		uuid: req.params.id
 	});
 

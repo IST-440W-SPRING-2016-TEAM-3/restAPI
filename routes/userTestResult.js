@@ -23,7 +23,7 @@ var bcrypt = require('bcrypt'),
     });
 
     router.get('/:id', function(req, res, next) {
-        var exists = TestResult.findOne({uuid : req.params.id});
+        var exists = TestResult.find({uuid : req.params.id});
 
         exists.exec(function(err, testResult){
             if(err){
@@ -47,7 +47,7 @@ router.post('/', function(req, res, next) {
         	testtype: testData.testtype,
         	testdescription: testData.testdescription,
         	result: testData.result,
-          date: testData.date
+            date: testData.date
         });
 
         var exists = TestResult.findOne({uuid:testData.uuid, testtype: testData.testtype});
@@ -66,5 +66,5 @@ router.post('/', function(req, res, next) {
         });
     });
 
-  
+
 module.exports = router;

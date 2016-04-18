@@ -2,22 +2,8 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
 var mongoose = require('mongoose'),
-    Nurse = require('../public/javascripts/nurseModel'),
-    connStr = 'mongodb://127.0.0.1:27017/440w';
-
-function connectMongo(logMessage){
-    mongoose.connect(connStr, function(err) {
-        if (err) throw err;
-        console.log(logMessage);
-    });
-}
-
-function disconnectMongo(logMessage){
-    if(mongoose.connection.close()){
-        console.log(logMessage);
-    }
-}
-
+    Nurse = require('../public/javascripts/nurseModel');
+    
 router.get('/', function(req, res, next) {
 
     var exists = Nurse.find({});

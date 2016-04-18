@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    var exists = Medicine.findOne({uuid : req.params.id});
+    var exists = Medicine.find({uuid : req.params.id});
 
     exists.exec(function(err, medicine){
         if(err){
