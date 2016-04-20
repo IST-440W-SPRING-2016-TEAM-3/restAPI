@@ -17,6 +17,10 @@ var ImmunizationSchema = new Schema({
 	dateimmunized: {
 		type: String,
 		required: true
+	},
+	dateexpired: {
+		type: String,
+		required: true
 	}
 });
 

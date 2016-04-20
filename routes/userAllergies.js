@@ -62,4 +62,23 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.put('/:id', function(req, res, next) {
+	var updatedUser = req.body,
+		sessionUUID = req.params.id;
+
+	var updates = {
+		$set: {
+            uuid: sessionUUID,
+            description: updatedUser.description,
+            name: updatedUser.name,
+            startdate : updatedUser.startdate,
+            enddate: updatedUser.enddate
+        }
+	};
+    Allergy.findOneAndUpdate({uuid: sessionUUID, name:updatedUser.name}, updates, {new: true, upsert: true}, function(err, doc){
+        if (err) throw err;
+        res.end();
+    });
+});
+
 module.exports = router;
