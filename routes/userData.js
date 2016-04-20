@@ -76,16 +76,39 @@ router.post('/', function(req, res, next) {
     });
 });
 
-// router.put('/:id', function(req, res, next) {
-//     var updatedUser = req.body;
-//
-//     connectMongo('USER::PUT::Successfully connected to MongoDB');
-//
-//     User.findOneAndUpdate({uuid: req.params.id}, {$set:{email: updatedUser.email, password:updatedUser.password}}, {new: true}, function(err, doc){
-//         if (err) throw err;
-//         disconnectMongo('USER::PUT::closed connection to MongoDB');
-//         res.end();
-//     });
-// });
+router.put('/:id', function(req, res, next) {
+    var updatedUser = req.body;
+
+    console.log(req.body);
+    console.log(req.params.id);
+
+    var updates = {
+        $set: {
+        	firstname: updatedUser.firstname,
+        	lastname: updatedUser.lastname,
+        	email: updatedUser.email,
+    		streetaddress: updatedUser.streetaddress,
+    		city: updatedUser.city,
+    		state: updatedUser.state,
+    		zip: updatedUser.zip,
+    		country: updatedUser.country,
+        	phone: updatedUser.phone,
+        	dob: updatedUser.dob,
+    		gender: updatedUser.gender,
+    		height: updatedUser.height,
+    		weight: updatedUser.weight,
+        	primaryinsurance: updatedUser.primaryinsurance,
+        	primarypharmacy: updatedUser.primarypharmacy,
+        	comment:  updatedUser.comment
+        }
+    };
+
+    console.log("Bruv you working?");
+
+    UserDataModel.findOneAndUpdate({uuid: req.params.id}, updates, {new: true}, function(err, doc){
+        if (err) throw err;
+        res.end();
+    });
+});
 
 module.exports = router;
