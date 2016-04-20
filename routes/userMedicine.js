@@ -47,7 +47,6 @@ router.post('/', function(req, res, next) {
         frequency: medicineData.frequency
     });
 
-    console.log(newMedicine);
     var exists = Medicine.findOne({uuid: medicineData.uuid, name: medicineData.name });
 
     exists.exec(function(err, medicine){
@@ -65,8 +64,21 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/:id', function(req, res, next) {
-    var updatedMedicine = req.body;
-    Medicine.findOneAndUpdate({uuid: req.params.id}, {$set:{description: updatedMedicine.description,price:updatedMedicine.price}}, {new: true}, function(err, doc){
+	var updatedUser = req.body,
+		sessionUUID = req.params.id;
+
+	var updates = {
+		$set: {
+            uuid: sessionUUID,
+            name: updatedUser.name,
+            description: updatedUser.description,
+            datestart: updatedUser.datestart,
+            dateend: updatedUser.dateend,
+            dosage: updatedUser.dosage,
+            frequency: updatedUser.frequency
+        }
+	};
+    Medicine.findOneAndUpdate({uuid: sessionUUID, name:updatedUser.name}, updates, {new: true, upsert: true}, function(err, doc){
         if (err) throw err;
         res.end();
     });

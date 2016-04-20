@@ -78,10 +78,7 @@ router.post('/', function(req, res, next) {
 
 router.put('/:id', function(req, res, next) {
     var updatedUser = req.body;
-
-    console.log(req.body);
-    console.log(req.params.id);
-
+    
     var updates = {
         $set: {
         	firstname: updatedUser.firstname,
@@ -102,10 +99,7 @@ router.put('/:id', function(req, res, next) {
         	comment:  updatedUser.comment
         }
     };
-
-    console.log("Bruv you working?");
-
-    UserDataModel.findOneAndUpdate({uuid: req.params.id}, updates, {new: true}, function(err, doc){
+    UserDataModel.findOneAndUpdate({uuid: req.params.id}, updates, {new: true, upsert: true}, function(err, doc){
         if (err) throw err;
         res.end();
     });
