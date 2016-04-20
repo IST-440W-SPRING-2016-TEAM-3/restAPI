@@ -50,7 +50,7 @@ var TestResultSchema = new Schema({
         type: String,
         required: false
     },
-    psa: {
+    respiratoryrate: {
         type: String,
         required: false
     },
