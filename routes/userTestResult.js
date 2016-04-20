@@ -61,7 +61,7 @@ router.post('/', function(req, res, next) {
         cpr: testData.cpr,
         bloodDiastolic: testData.bloodDiastolic,
         bloodSystolic: testData.bloodSystolic,
-        psa: testData.psa,
+        respiratoryrate: testData.respiratoryrate,
         heartrate: testData.heartrate,
         bodytemperature: testData.bodytemperature,
         date: testData.date
