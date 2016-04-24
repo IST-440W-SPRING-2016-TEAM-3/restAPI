@@ -51,16 +51,16 @@ router.post('/', function(req, res, next) {
     var NewTestResult = new TestResult({
         uuid: testData.uuid,
         testtype: testData.testtype,
-        phLevel: testData.phLevel,
-        glucoseUrine: testData.glucoseUrine,
+        phlevel: testData.phlevel,
+        glucoseurine: testData.glucoseurine,
         ketones: testData.ketones,
         gravity: testData.gravity,
         cholesterol: testData.cholesterol,
         bloodtype: testData.bloodtype,
         glucoseblood: testData.glucoseblood,
         cpr: testData.cpr,
-        bloodDiastolic: testData.bloodDiastolic,
-        bloodSystolic: testData.bloodSystolic,
+        blooddiastolic: testData.blooddiastolic,
+        bloodsystolic: testData.bloodsystolic,
         respiratoryrate: testData.respiratoryrate,
         heartrate: testData.heartrate,
         bodytemperature: testData.bodytemperature,
@@ -88,5 +88,42 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.put('/:id', function(req, res, next) {
+	var updatedUser = req.body,
+		sessionUUID = req.params.id;
+
+	var updates = {
+		$set: {
+            uuid: sessionUUID,
+            testtype: updatedUser.testtype ? updatedUser.testtype : " ",
+            phlevel: updatedUser.phlevel ? updatedUser.phlevel : " ",
+            glucoseurine: updatedUser.glucoseurine ? updatedUser.glucoseurine : " ",
+            ketones: updatedUser.ketones ? updatedUser.ketones : " ",
+            gravity: updatedUser.gravity ? updatedUser.gravity : " ",
+            cholesterol: updatedUser.cholesterol ? updatedUser.cholesterol : " ",
+            bloodtype: updatedUser.bloodtype ? updatedUser.bloodtype : " ",
+            glucoseblood: updatedUser.glucoseblood ? updatedUser.glucoseblood : " ",
+            cpr: updatedUser.cpr ? updatedUser.cpr : " ",
+            blooddiastolic: updatedUser.blooddiastolic ? updatedUser.blooddiastolic : " ",
+            bloodsystolic: updatedUser.bloodsystolic ? updatedUser.bloodsystolic : " ",
+            respiratoryrate: updatedUser.respiratoryrate ? updatedUser.respiratoryrate : " ",
+            heartrate: updatedUser.heartrate ? updatedUser.heartrate : " ",
+            bodytemperature: updatedUser.bodytemperature ? updatedUser.bodytemperature : " ",
+            date: updatedUser.date ? updatedUser.date : " ",
+        }
+	};
+
+    console.log(updatedUser.testtype);
+	TestResult.findOneAndUpdate({
+		uuid: sessionUUID,
+		testtype: updatedUser.testtype
+	}, updates, {
+		new: true,
+		upsert: true
+	}, function(err, doc) {
+		if (err) throw err;
+		res.end();
+	});
+});
 
 module.exports = router;

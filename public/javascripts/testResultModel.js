@@ -10,57 +10,44 @@ var TestResultSchema = new Schema({
         type: String,
         required: true
     },
-    pHLevel: {
-        type: String,
-        required: false
+    phlevel: {
+        type: String
     },
-    glucoseUrine: {
-        type: String,
-        required: false
+    glucoseurine: {
+        type: String
     },
     ketones: {
-        type: String,
-        required: false
+        type: String
     },
     gravity: {
-        type: String,
-        required: false
+        type: String
     },
     cholesterol: {
-        type: String,
-        required: false
+        type: String
     },
     bloodtype: {
-        type: String,
-        required: false
+        type: String
     },
-    glucoseBlood: {
-        type: String,
-        required: false
+    glucoseblood: {
+        type: String
     },
     cpr: {
-        type: String,
-        required: false
+        type: String
     },
-    bloodDiastolic: {
-        type: String,
-        required: false
+    blooddiastolic: {
+        type: String
     },
-    bloodSystolic: {
-        type: String,
-        required: false
+    bloodsystolic: {
+        type: String
     },
     respiratoryrate: {
-        type: String,
-        required: false
+        type: String
     },
     heartrate: {
-        type: String,
-        required: false
+        type: String
     },
     bodytemperature: {
-        type: String,
-        required: false
+        type: String
     },
     date: {
         type: String,
