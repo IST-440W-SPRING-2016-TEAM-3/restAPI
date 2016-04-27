@@ -11,43 +11,43 @@ var TestResultSchema = new Schema({
         required: true
     },
     phlevel: {
-        type: String
+        type: Number
     },
     glucoseurine: {
-        type: String
+        type: Number
     },
     ketones: {
-        type: String
+        type: Number
     },
     gravity: {
-        type: String
+        type: Number
     },
     cholesterol: {
-        type: String
+        type: Number
     },
     bloodtype: {
         type: String
     },
     glucoseblood: {
-        type: String
+        type: Number
     },
     cpr: {
-        type: String
+        type: Number
     },
     blooddiastolic: {
-        type: String
+        type: Number
     },
     bloodsystolic: {
-        type: String
+        type: Number
     },
     respiratoryrate: {
-        type: String
+        type: Number
     },
     heartrate: {
-        type: String
+        type: Number
     },
     bodytemperature: {
-        type: String
+        type: Number
     },
     date: {
         type: String,
