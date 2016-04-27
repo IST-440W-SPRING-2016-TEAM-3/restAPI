@@ -49,8 +49,13 @@ router.post('/', function(req, res, next) {
     var newUser = new User({
         uuid: newUUID,
         email: userData.email,
+        lname: userData.lname,
+        fname: userData.fname,
+        useraccess: userData.useraccess,
         password: userData.password
     });
+
+    console.log(newUser.useraccess);
 
     var exists = User.findOne({ email: userData.email });
 
