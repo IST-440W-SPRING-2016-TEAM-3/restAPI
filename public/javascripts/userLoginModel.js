@@ -16,6 +16,18 @@ var UserLoginSchema = new Schema({
 			unique: true
 		}
 	},
+	lname: {
+		type: String,
+		required: true
+	},
+	fname: {
+		type: String,
+		required: true
+	},
+	useraccess: {
+		type: String,
+		required: true
+	},
 	password: {
 		type: String,
 		required: true
